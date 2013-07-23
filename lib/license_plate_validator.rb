@@ -33,5 +33,7 @@ class LicensePlateValidator
   def normalize(input)
     input.to_s.upcase.strip.gsub(/[^A-Z0-9]/, '')
   end
-
 end
+
+require 'license_plate_validator/version'
+require 'license_plate_validator/active_model' if defined?(ActiveModel)
