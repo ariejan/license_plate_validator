@@ -72,6 +72,10 @@ specs.
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
 
+## Contributor
+
+ * Pascal Widdershoven - for the original regexes for Dutch license plate numbers.
+
 ## License
 
 See [LICENSE.txt](https://github.com/ariejan/license_plate_validator/blob/master/LICENSE.txt)
