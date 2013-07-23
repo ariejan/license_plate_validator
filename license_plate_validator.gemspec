@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'license_plate_validator/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "LicensePlateValidator"
+  spec.name          = "license_plate_validator"
   spec.version       = LicensePlateValidator::VERSION
   spec.authors       = ["Ariejan de Vroom"]
   spec.email         = ["ariejan@ariejan.net"]
