@@ -1,3 +1,3 @@
-module LicensePlateValidator
+class LicensePlateValidator
   VERSION = "0.0.1"
 end
