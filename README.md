@@ -1,5 +1,6 @@
 # License Plate Validator
 
+[![Gem Version](https://badge.fury.io/rb/license_plate_validator.png)](http://badge.fury.io/rb/license_plate_validator)
 [![Build Status](https://travis-ci.org/ariejan/license_plate_validator.png?branch=master)](https://travis-ci.org/ariejan/license_plate_validator)
 
 This gem allows you to easily valdiate license plate fields to be valid
