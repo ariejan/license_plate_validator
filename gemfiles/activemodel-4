@@ -1,0 +1,5 @@
+source "https://rubygems.org"
+
+gem "activemodel", "~> 4.0.0"
+gem "rspec", "~> 2.14.0"
+gem "rake"
