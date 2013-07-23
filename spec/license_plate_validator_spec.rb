@@ -19,7 +19,7 @@ describe LicensePlateValidator do
   end
 
   context "NL - Netherlands" do
-    SAMPLES = [
+    NL_VALID_SAMPLES = [
       "FZ-61-24",
       "24-61-FX",
       "24-FZ-61",
@@ -32,11 +32,25 @@ describe LicensePlateValidator do
       "X-721-FZ"
     ]
 
-    # SAMPLES.each do |number|
-    #   it "accepts #{number}" do
-    #     expect(LicensePlateValidator.new(number)).to be_true
-    #   end
-    # end
+    NL_INVALID_SAMPLES = [
+      "DEF-123",
+      "123-DEF",
+      "DEFGHI",
+      "123456"
+    ]
 
+    NL_VALID_SAMPLES.each do |number|
+      it "accepts '#{number}'" do
+        license = LicensePlateValidator.new(number)
+        expect(license).to be_valid
+      end
+    end
+
+    NL_INVALID_SAMPLES.each do |number|
+      it "does not accept '#{number}'" do
+        license = LicensePlateValidator.new(number)
+        expect(license).not_to be_valid
+      end
+    end
   end
 end
