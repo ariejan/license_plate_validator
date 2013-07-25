@@ -32,22 +32,26 @@ Or install it yourself as:
 
 ## Usage
 
-Without ActiveModel or Rails:
-
     LicensePlateValidator.new("60-NFH-1", country: :nl).valid?
     #=> true
 
     LicensePlateValidator.new("SBA 5226", country: :nl).valid?
     #=> false
 
-Or add it to your Rails 3.x or 4.x project, using ActiveModel:
+### Rails 3.x / 4.x
+
+You can use LicensePlateValidator with any ActiveModel class, including 
+ActiveRecord models:
 
     class Vehicle < ActiveRecord::Base
       validates :license_plate_number, license_plate: { country: :nl }
     end
 
-You can also make the country selection dependent on an attribute or other code, 
-using a `Proc`, assuming this proc will return an appropriate country symbol:
+### Dynamic country selection
+
+If you supply a `Proc` it will be called with the current record begin validated.
+
+The `Proc` must return either `nil` (accept all the things) or a valid country code.
 
     class Vehicle < ActiveRecord::Base
       validates :license_plate_number,
