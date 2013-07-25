@@ -5,7 +5,7 @@ module ActiveModel
     class LicensePlateValidator < ::ActiveModel::EachValidator
 
       def validate_each(record, attribute, value)
-        license_plate = ::LicensePlateValidator.new(value.to_s)
+        license_plate = ::LicensePlateValidator.new(value.to_s, options)
 
         if !license_plate.valid?
           record.errors.add(attribute, :invalid_license_plate, message: options[:message])
