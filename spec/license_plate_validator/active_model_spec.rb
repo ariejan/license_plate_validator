@@ -6,6 +6,10 @@ if defined?(ActiveModel)
     validates :number, license_plate: { country: :nl }
   end
 
+  class DutchMethodVehicle < ModelBase
+    validates :number, license_plate: { country: Proc.new { |dmv| dmv.country } }
+  end
+
   class UnknownVehicle < ModelBase
     validates :number, license_plate: true
   end
@@ -16,6 +20,16 @@ if defined?(ActiveModel)
       expect(obj).to be_valid
 
       obj = DutchVehicle.new(number: "SBA5226")
+      expect(obj).not_to be_valid
+    end
+  end
+
+  describe DutchMethodVehicle do
+    it "accepts Dutch plates only" do
+      obj = DutchMethodVehicle.new(number: "60-NFH-1", country: "nl")
+      expect(obj).to be_valid
+
+      obj = DutchMethodVehicle.new(number: "SBA5226", country: "nl")
       expect(obj).not_to be_valid
     end
   end

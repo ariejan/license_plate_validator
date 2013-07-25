@@ -5,7 +5,13 @@ module ActiveModel
     class LicensePlateValidator < ::ActiveModel::EachValidator
 
       def validate_each(record, attribute, value)
-        license_plate = ::LicensePlateValidator.new(value.to_s, options)
+        country = case(options[:country])
+                  when Proc then options[:country].call(record)
+                  when nil then nil
+                  else options[:country].to_sym
+                  end
+
+        license_plate = ::LicensePlateValidator.new(value.to_s, { country: country })
 
         if !license_plate.valid?
           record.errors.add(attribute, :invalid_license_plate, message: options[:message])

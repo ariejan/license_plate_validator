@@ -28,9 +28,12 @@ class LicensePlateValidator
 
   def valid?
     return true if @options[:country].nil?
-    return true unless supported_countries.include?(@options[:country])
 
-    PATTERNS[@options[:country]].any? { |pattern| raw =~ pattern }
+    country = @options[:country].to_sym
+
+    return true unless supported_countries.include?(country)
+
+    PATTERNS[country].any? { |pattern| raw =~ pattern }
   end
 
   def supported_countries
