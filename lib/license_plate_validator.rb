@@ -1,27 +1,44 @@
 class LicensePlateValidator
 
-  PATTERNS = [
+  PATTERNS = {
     # Netherlands
-    /^([a-zA-Z]{2})-?([0-9]{2})-?([0-9]{2})$/,
-    /^([0-9]{2})-?([0-9]{2})-?([a-zA-Z]{2})$/,
-    /^([0-9]{2})-?([a-zA-Z]{2})-?([0-9]{2})$/,
-    /^([a-zA-Z]{2})-?([0-9]{2})-?([a-zA-Z]{2})$/,
-    /^([a-zA-Z]{2})-?([a-zA-Z]{2})-?([0-9]{2})$/,
-    /^([0-9]{2})-?([a-zA-Z]{2})-?([a-zA-Z]{2})$/,
-    /^([0-9]{2})-?([a-zA-Z]{3})-?([0-9]{1})$/,
-    /^([0-9]{1})-?([a-zA-Z]{3})-?([0-9]{2})$/,
-    /^([a-zA-Z]{2})-?([0-9]{3})-?([a-zA-Z]{1})$/,
-    /^([a-zA-Z]{1})-?([0-9]{3})-?([a-zA-Z]{2})$/
-  ].freeze
+    nl: [
+      /^([a-zA-Z]{2})-?([0-9]{2})-?([0-9]{2})$/,
+      /^([0-9]{2})-?([0-9]{2})-?([a-zA-Z]{2})$/,
+      /^([0-9]{2})-?([a-zA-Z]{2})-?([0-9]{2})$/,
+      /^([a-zA-Z]{2})-?([0-9]{2})-?([a-zA-Z]{2})$/,
+      /^([a-zA-Z]{2})-?([a-zA-Z]{2})-?([0-9]{2})$/,
+      /^([0-9]{2})-?([a-zA-Z]{2})-?([a-zA-Z]{2})$/,
+      /^([0-9]{2})-?([a-zA-Z]{3})-?([0-9]{1})$/,
+      /^([0-9]{1})-?([a-zA-Z]{3})-?([0-9]{2})$/,
+      /^([a-zA-Z]{2})-?([0-9]{3})-?([a-zA-Z]{1})$/,
+      /^([a-zA-Z]{1})-?([0-9]{3})-?([a-zA-Z]{2})$/
+    ]
+  }.freeze
 
-  def initialize(raw)
+  def initialize(raw, options = {})
+    @options = {
+      country: nil
+    }.merge(options)
+
     @raw = normalize(raw || "")
   end
 
   attr_reader :raw
 
   def valid?
-    PATTERNS.any? { |pattern| raw =~ pattern }
+    return true if @options[:country].nil?
+    return true unless supported_countries.include?(@options[:country])
+
+    PATTERNS[@options[:country]].any? { |pattern| raw =~ pattern }
+  end
+
+  def supported_countries
+    PATTERNS.keys
+  end
+
+  def patterns_for_country(country)
+    return PATTERNS[country] || []
   end
 
   def to_s
