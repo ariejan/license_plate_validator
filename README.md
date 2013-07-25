@@ -34,14 +34,34 @@ Or install it yourself as:
 
 Without ActiveModel or Rails:
 
-    LicensePlateValidator.new("60-NFH-1").valid?
+    LicensePlateValidator.new("60-NFH-1", country: :nl).valid?
     #=> true
+
+    LicensePlateValidator.new("SBA 5226", country: :nl).valid?
+    #=> false
 
 Or add it to your Rails 3.x or 4.x project, using ActiveModel:
 
     class Vehicle < ActiveRecord::Base
-      validates :license_plate_number, license_plate: true
+      validates :license_plate_number, license_plate: { country: :nl }
     end
+
+You can also make the country selection dependent on an attribute or other code, 
+using a `Proc`, assuming this proc will return an appropriate country symbol:
+
+    class Vehicle < ActiveRecord::Base
+      validates :license_plate_number,
+        license_plate: { country: Proc.new { |vehicle| vehicle.country } }
+    end
+
+### Edge cases
+
+ * When no country is selected (or set to `nil`), all plates are considered valid.
+ * When an unknown country is selected, all plates are considered valid (e.g. we assume there are no validation rules for that country)
+
+### Supported countries
+
+ * `:nl` Netherlands; all common "sidecode" number formats.
 
 ## I18n
 
