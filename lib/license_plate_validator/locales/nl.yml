@@ -1,4 +1,4 @@
 en:
   errors:
     messages:
-      invalide_license_plate: is geen geldig kenteken
+      invalid_license_plate: is geen geldig kenteken

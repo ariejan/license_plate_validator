@@ -1,4 +1,4 @@
 en:
   errors:
     messages:
-      invalide_license_plate: is not a valid license plate number
+      invalid_license_plate: is not a valid license plate number
