@@ -1,0 +1,4 @@
+en:
+  errors:
+    messages:
+      invalid_license_plate: ist kein gültiges Kennzeichen
