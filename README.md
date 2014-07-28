@@ -11,10 +11,12 @@ only validate Dutch license plates.
 
 ## Features
 
-Validate Dutch license plates ("kentekens"), includes all ten common Dutch license
+Validates Dutch license plates ("kentekens"), includes all ten common Dutch license
 plate types. 
 
 Special license plates (like those for the Royal family) are not supported.
+
+Also supports most german license plates, including most diplomatic formats.
 
 ## Installation
 
@@ -66,10 +68,11 @@ The `Proc` must return either `nil` (accept all the things) or a valid country c
 ### Supported countries
 
  * `:nl` Netherlands; all common "sidecode" number formats.
+ * `:de` Germany; all regular forms as well as the common diplomatic variants
 
 ## I18n
 
-Locales for English and Dutch are provided. See [`lib/license_plate_validator/locales`](https://github.com/ariejan/license_plate_validator/tree/master/lib/license_plate_validator/locales)
+Locales for English, Dutch and German are provided. See [`lib/license_plate_validator/locales`](https://github.com/ariejan/license_plate_validator/tree/master/lib/license_plate_validator/locales)
 for details.
 
 ## Contributing
@@ -99,6 +102,7 @@ specs.
 ## Contributor
 
  * Pascal Widdershoven - for the original regexes for Dutch license plate numbers.
+ * Marcus Ilgner, evopark - for german license plates
 
 ## License
 
