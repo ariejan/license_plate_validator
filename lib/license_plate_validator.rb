@@ -2,7 +2,7 @@ class LicensePlateValidator
 
   PATTERNS = {
     # Netherlands
-    nl: [
+    NL: [
       /^([a-zA-Z]{2})-?([0-9]{2})-?([0-9]{2})$/,
       /^([0-9]{2})-?([0-9]{2})-?([a-zA-Z]{2})$/,
       /^([0-9]{2})-?([a-zA-Z]{2})-?([0-9]{2})$/,
@@ -15,7 +15,7 @@ class LicensePlateValidator
       /^([a-zA-Z]{1})-?([0-9]{3})-?([a-zA-Z]{2})$/
     ],
     # Germany
-    de: [
+    D: [
       # first part: distinguisher for area
       # second part (a) 1-2 characters followed by 1-4 numbers
       #          or (b) for diplomatic purposes:
@@ -42,7 +42,7 @@ class LicensePlateValidator
   def valid?
     return true if @options[:country].nil?
 
-    country = @options[:country].to_sym
+    country = @options[:country].upcase.to_sym
 
     return true unless supported_countries.include?(country)
 
