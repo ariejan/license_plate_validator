@@ -104,30 +104,30 @@ describe LicensePlateValidator do
     end
   end
 
-  context "DE - Germany" do
-    DE_VALID_SAMPLES = [
+  context "D - Germany" do
+    D_VALID_SAMPLES = [
       "K-AB-123",
       "GL-A-123H",
-      "AC A123",
       "K-9123",
       "0-12-123",
+      "ëö-AB-123",
       "0-12-234H"
     ]
 
-    DE_INVALID_SAMPLES = [
-        "FOO-AB-123",
+    D_INVALID_SAMPLES = [
+        "AC A123",
         "123",
         "K-2"
     ]
 
-    DE_VALID_SAMPLES.each do |sample|
+    D_VALID_SAMPLES.each do |sample|
       it "accepts '#{sample}'" do
         license = LicensePlateValidator.new(sample, country: :d)
         expect(license).to be_valid
       end
     end
 
-    DE_INVALID_SAMPLES.each do |sample|
+    D_INVALID_SAMPLES.each do |sample|
       it "rejects '#{sample}'" do
         license = LicensePlateValidator.new(sample, country: :d)
         expect(license).to_not be_valid
