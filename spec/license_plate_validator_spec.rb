@@ -2,12 +2,12 @@ require 'spec_helper'
 
 describe LicensePlateValidator do
   it 'should have a version number' do
-    LicensePlateValidator::VERSION.should_not be_nil
+    expect(LicensePlateValidator::VERSION).not_to be_nil
   end
 
   describe "#new" do
     it 'demands one argument, optionally a second' do
-      expect { LicensePlateValidator.new() }.to raise_error
+      expect { LicensePlateValidator.new() }.to raise_error(ArgumentError)
       expect { LicensePlateValidator.new ("a") }.not_to raise_error
       expect { LicensePlateValidator.new("a", country: :nl) }.not_to raise_error
       expect { LicensePlateValidator.new("a", country: nil) }.not_to raise_error

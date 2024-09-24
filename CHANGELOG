@@ -1,12 +1,18 @@
-1.2.0 - 2014-07-28
+# CHANGELOG
 
- * German license plate support
- * German language support
+## UNRELEASED
 
-1.1.1 - 2014-04-25
+ - Update dependencies 
 
- * Fix i18n key
+## 1.2.0 - 2014-07-28
 
-1.0 - 2013-04-23
+ - German license plate support
+ - German language support
 
- * Initial release with Dutch license plate support
+## 1.1.1 - 2014-04-25
+
+ - Fix i18n key
+
+## 1.0 - 2013-04-23
+
+ - Initial release with Dutch license plate support
