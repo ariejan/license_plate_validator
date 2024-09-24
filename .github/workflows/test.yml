@@ -23,21 +23,21 @@ jobs:
           - gemfiles/Gemfile.rails7.1
           - gemfiles/Gemfile.rails7.2
 
-        steps:
-        - uses: actions/checkout@v4
+    steps:
+      - uses: actions/checkout@v4
 
-        - name: Set up Ruby
-          uses: ruby/setup-ruby@v1
-          with:
-           ruby-version: ${{ matrix.ruby-version }}
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby-version }}
 
-        - name: Install dependencies
-          run: |
-            gem install bundler
-            bundle install --gemfile=${{ matrix.gemfile }}
+      - name: Install dependencies
+        run: |
+          gem install bundler
+          bundle install --gemfile=${{ matrix.gemfile }}
 
-        - name: Run tests
-          run: |
-            bundle exec rspec
-          env:
-            BUNDLE_GEMFILE: ${{ matrix.gemfile }}
+      - name: Run tests
+        run: |
+          bundle exec rspec
+        env:
+          BUNDLE_GEMFILE: ${{ matrix.gemfile }}
