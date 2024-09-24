@@ -30,7 +30,7 @@ describe LicensePlateValidator do
     end
 
     it "returns array of patterns for known countries" do
-      expect(subject.patterns_for_country(:nl).size).to eql(10)
+      expect(subject.patterns_for_country(:nl).size).to eql(14)
     end
   end
 
@@ -79,7 +79,11 @@ describe LicensePlateValidator do
       "61-NFH-1",
       "1-KGB-42",
       "FZ-142-X",
-      "X-721-FZ"
+      "X-721-FZ",
+      "GBB-01-B",
+      "V-01-BBB",
+      "9-XX-999",
+      "999-XX-9"
     ]
 
     NL_INVALID_SAMPLES = [
