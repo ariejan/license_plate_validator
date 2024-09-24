@@ -1,0 +1,29 @@
+name: Release to Rubygems
+
+on:
+  push:
+    tags:
+      - v*
+
+permissions:
+  contents: read
+
+jobs:
+  push:
+    if: github.repository == 'ariejan/license_plate_validator'
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+          ruby-version: ruby
+
+      # Release
+      - uses: rubygems/release-gem@v1
