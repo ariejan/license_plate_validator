@@ -1,13 +1,12 @@
 # License Plate Validator
 
 [![Gem Version](https://badge.fury.io/rb/license_plate_validator.png)](http://badge.fury.io/rb/license_plate_validator)
-[![Build Status](https://travis-ci.org/ariejan/license_plate_validator.png?branch=master)](https://travis-ci.org/ariejan/license_plate_validator)
 
 This gem allows you to easily valdiate license plate fields to be valid
 license plates.
 
 We're planning on supporting multiple countries, but at this time we can
-only validate Dutch license plates.
+only validate Dutch and German license plates.
 
 ## Features
 
@@ -40,7 +39,7 @@ Or install it yourself as:
     LicensePlateValidator.new("SBA 5226", country: :nl).valid?
     #=> false
 
-### Rails 3.x / 4.x
+### Ruby on Rails support
 
 You can use LicensePlateValidator with any ActiveModel class, including 
 ActiveRecord models:
@@ -102,6 +101,7 @@ specs.
 ## Contributor
 
  * Pascal Widdershoven - for the original regexes for Dutch license plate numbers.
+ * Edward Poot - for adding new RDW approved license plate schemes
  * Marcus Ilgner, evopark - for german license plates
 
 ## License

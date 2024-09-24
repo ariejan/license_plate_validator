@@ -14,33 +14,35 @@ if defined?(ActiveModel)
     validates :number, license_plate: true
   end
 
-  describe DutchVehicle do
-    it "accepts Dutch plates only" do
-      obj = DutchVehicle.new(number: "60-NFH-1")
-      expect(obj).to be_valid
+  RSpec.describe "Ruby on Rails ActiveModel support" do
+    context DutchVehicle do
+      it "accepts Dutch plates only" do
+        obj = DutchVehicle.new(number: "60-NFH-1")
+        expect(obj).to be_valid
 
-      obj = DutchVehicle.new(number: "SBA5226")
-      expect(obj).not_to be_valid
+        obj = DutchVehicle.new(number: "SBA5226")
+        expect(obj).not_to be_valid
+      end
     end
-  end
 
-  describe DutchMethodVehicle do
-    it "accepts Dutch plates only" do
-      obj = DutchMethodVehicle.new(number: "60-NFH-1", country: "nl")
-      expect(obj).to be_valid
+    context DutchMethodVehicle do
+      it "accepts Dutch plates only" do
+        obj = DutchMethodVehicle.new(number: "60-NFH-1", country: "nl")
+        expect(obj).to be_valid
 
-      obj = DutchMethodVehicle.new(number: "SBA5226", country: "nl")
-      expect(obj).not_to be_valid
+        obj = DutchMethodVehicle.new(number: "SBA5226", country: "nl")
+        expect(obj).not_to be_valid
+      end
     end
-  end
 
-  describe UnknownVehicle do
-    it "accepts both Dutch and German plates" do
-      obj = UnknownVehicle.new(number: "60-NFH-1")
-      expect(obj).to be_valid
+    context UnknownVehicle do
+      it "accepts both Dutch and German plates" do
+        obj = UnknownVehicle.new(number: "60-NFH-1")
+        expect(obj).to be_valid
 
-      obj = UnknownVehicle.new(number: "SBA5226")
-      expect(obj).to be_valid
+        obj = UnknownVehicle.new(number: "SBA5226")
+        expect(obj).to be_valid
+      end
     end
   end
 end
