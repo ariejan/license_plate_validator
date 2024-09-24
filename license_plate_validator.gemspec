@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.summary       = %q{Validate license plate numbers for countries that support it.}
   spec.homepage      = "https://ariejan.github.io/license_plate_validator"
   spec.license       = "MIT"
-
+  spec.required_ruby_version = ">= 3.1"
   spec.files         = `git ls-files`.split($/)
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
@@ -20,6 +20,6 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 2.5"
   spec.add_development_dependency "rspec", "~> 3.13.0"
-  spec.add_development_dependency "rake"
-  spec.add_development_dependency 'activemodel', '> 5.0.0'
+  spec.add_development_dependency "rake", "~> 13.0"
+  spec.add_development_dependency 'activemodel', '~> 7'
 end
