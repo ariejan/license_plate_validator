@@ -19,17 +19,17 @@ jobs:
         - uses: actions/checkout@v2
 
         - name: Set up Ruby
-            uses: ruby/setup-ruby@v1
-            with:
-                ruby-version: ${{ matrix.ruby-version }}
+          uses: ruby/setup-ruby@v1
+          with:
+           ruby-version: ${{ matrix.ruby-version }}
 
         - name: Install dependencies
-            run: |
-                gem install bundler
-                bundle install --gemfile=${{ matrix.gemfile }}
+          run: |
+            gem install bundler
+            bundle install --gemfile=${{ matrix.gemfile }}
 
         - name: Run tests
-            run: |
-                bundle exec rspec
-            env:
-                BUNDLE_GEMFILE: ${{ matrix.gemfile }}
+          run: |
+            bundle exec rspec
+          env:
+            BUNDLE_GEMFILE: ${{ matrix.gemfile }}
