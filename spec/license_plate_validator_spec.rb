@@ -1,11 +1,11 @@
 require 'spec_helper'
 
-describe LicensePlateValidator do
+RSpec.describe LicensePlateValidator do
   it 'should have a version number' do
     expect(LicensePlateValidator::VERSION).not_to be_nil
   end
 
-  describe "#new" do
+  context "#new" do
     it 'demands one argument, optionally a second' do
       expect { LicensePlateValidator.new() }.to raise_error(ArgumentError)
       expect { LicensePlateValidator.new ("a") }.not_to raise_error
