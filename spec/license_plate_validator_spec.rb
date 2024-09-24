@@ -30,7 +30,7 @@ describe LicensePlateValidator do
     end
 
     it "returns array of patterns for known countries" do
-      expect(subject.patterns_for_country(:nl).size).to eql(10)
+      expect(subject.patterns_for_country(:nl).size).to eql(14)
     end
   end
 
