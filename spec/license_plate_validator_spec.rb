@@ -112,6 +112,7 @@ RSpec.describe LicensePlateValidator do
     DE_VALID_SAMPLES = [
       "K-AB-123",
       "GL-A-123H",
+      "B-AD-4563E",
       "AC A123",
       "K-9123",
       "0-12-123",
