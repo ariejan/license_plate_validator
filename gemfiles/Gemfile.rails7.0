@@ -3,3 +3,6 @@ source "https://rubygems.org"
 gem "activemodel", "~> 7.0.0"
 gem "rspec", "~> 3.13.0"
 gem "rake"
+
+# Pin concurrent-ruby, because >= 1.3.5 is not compatible with ActiveModel 7
+gem 'concurrent-ruby', '1.3.4'
