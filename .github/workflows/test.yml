@@ -25,7 +25,7 @@ jobs:
           - gemfiles/Gemfile.rails8.0
         exclude:
           - ruby-version: 3.1
-          - gemfile: gemfiles/Gemfile.rails8.0
+            gemfile: gemfiles/Gemfile.rails8.0
 
     steps:
       - uses: actions/checkout@v4
