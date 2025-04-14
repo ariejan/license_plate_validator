@@ -3,7 +3,7 @@
 [![Gem Version](https://badge.fury.io/rb/license_plate_validator.png)](http://badge.fury.io/rb/license_plate_validator)
 [![Ruby CI](https://github.com/ariejan/license_plate_validator/actions/workflows/test.yml/badge.svg)](https://github.com/ariejan/license_plate_validator/actions)
 
-This gem allows you to easily valdiate license plate fields to be valid
+This gem allows you to easily validate license plate fields to be valid
 license plates.
 
 We're planning on supporting multiple countries, but at this time we can
@@ -11,12 +11,33 @@ only validate Dutch and German license plates.
 
 ## Features
 
-Validates Dutch license plates ("kentekens"), includes all ten common Dutch license
-plate types. 
+Validates license plates for the following countries:
+
+### Netherlands (NL)
+- Supports all standard Dutch license plate formats (e.g., `XX-99-XX`, `99-XX-99`, `XX-99-99`, etc.)
+- Formats with letters, numbers, and combinations thereof
+- Example: `60-NFH-1`
 
 Special license plates (like those for the Royal family) are not supported.
 
-Also supports most german license plates, including most diplomatic formats.
+### Germany (DE)
+- Supports standard German license plate formats
+- Area distinguisher followed by 1-2 characters and 1-4 numbers
+- Diplomatic license plates
+- Testing vehicle plates
+- Example: `K-AB-123`, `GL-A-123H`
+
+### Poland (PL)
+- Standard car plates with 2-letter and 3-letter powiat codes (e.g., `WA 12345`, `GDA J234`)
+- Motorcycle and moped plates
+- Reduced size plates for imported vehicles
+- Classic car plates (yellow background)
+- Temporary and export plates
+- Electric vehicle plates
+- Testing vehicle plates
+- Custom plates
+- Professional plates
+- Example: `WA 1234J`, `W 123`
 
 ## Installation
 
@@ -26,11 +47,11 @@ Add this line to your application's Gemfile:
 
 And then execute:
 
-    $ bundle
+    bundle
 
 Or install it yourself as:
 
-    $ gem install license_plate_validator
+    gem install license_plate_validator
 
 ## Usage
 
@@ -42,7 +63,7 @@ Or install it yourself as:
 
 ### Ruby on Rails support
 
-You can use LicensePlateValidator with any ActiveModel class, including 
+You can use LicensePlateValidator with any ActiveModel class, including
 ActiveRecord models:
 
     class Vehicle < ActiveRecord::Base
@@ -62,13 +83,13 @@ The `Proc` must return either `nil` (accept all the things) or a valid country c
 
 ### Edge cases
 
- * When no country is selected (or set to `nil`), all plates are considered valid.
- * When an unknown country is selected, all plates are considered valid (e.g. we assume there are no validation rules for that country)
+- When no country is selected (or set to `nil`), all plates are considered valid.
+- When an unknown country is selected, all plates are considered valid (e.g. we assume there are no validation rules for that country)
 
 ### Supported countries
 
- * `:nl` Netherlands; all common "sidecode" number formats.
- * `:de` Germany; all regular forms as well as the common diplomatic variants
+- `:nl` Netherlands; all common "sidecode" number formats.
+- `:de` Germany; all regular forms as well as the common diplomatic variants
 
 ## I18n
 
@@ -81,10 +102,10 @@ for details.
 
 I'd like to add the following feature (in no specific order), maybe you can help?
 
- * Validate uncommon license plates as well (like CD-dd-dd and AA-dd)
- * Check if characters used are actually allowed.
- * Output properly formatted license plate numbers
- * Add support for other countries where possible. Germany, Belgium, France and Poland are high on the list.
+- Validate uncommon license plates as well (like CD-dd-dd and AA-dd)
+- Check if characters used are actually allowed.
+- Output properly formatted license plate numbers
+- Add support for other countries where possible. Germany, Belgium, France and Poland are high on the list.
 
 If you're unsure what to contribute, contact me. :-)
 
@@ -101,9 +122,9 @@ specs.
 
 ## Contributor
 
- * Pascal Widdershoven - for the original regexes for Dutch license plate numbers.
- * Edward Poot - for adding new RDW approved license plate schemes
- * Marcus Ilgner, evopark - for german license plates
+- Pascal Widdershoven - for the original regexes for Dutch license plate numbers.
+- Edward Poot - for adding new RDW approved license plate schemes
+- Marcus Ilgner, evopark - for german license plates
 
 ## License
 

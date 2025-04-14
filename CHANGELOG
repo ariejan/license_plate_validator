@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 2.1.0 - 2025-04-14
+
+ - Add Polish ActiveSupport translations - @ariejan
+ - Add validations for Polish license plates. - @ariejan
+
 ## 2.0.1 - 2025-01-01
 
  - Add support for German E-license plates - @Lisztos
