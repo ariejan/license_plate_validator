@@ -1,6 +1,66 @@
 class LicensePlateValidator
 
   PATTERNS = {
+    # Poland
+    pl: [
+      # Standard car plates (2-letter powiat code)
+      /^([A-Z]{2})\s([0-9]{5})$/,                # XY 12345
+      /^([A-Z]{2})\s([0-9]{4}[A-HJ-NP-TV-Z])$/,  # XY 1234J
+      /^([A-Z]{2})\s([0-9]{3}[A-HJ-NP-TV-Z]{2})$/,  # XY 123JK
+      /^([A-Z]{2})\s([0-9][A-HJ-NP-TV-Z][0-9]{3})$/,  # XY 1J345
+      /^([A-Z]{2})\s([0-9][A-HJ-NP-TV-Z]{2}[0-9]{2})$/,  # XY 1JK45
+      
+      # Standard car plates (3-letter powiat code)
+      /^([A-Z]{3})\s([A-HJ-NP-TV-Z][0-9]{3})$/,  # XYZ J234
+      /^([A-Z]{3})\s([0-9]{2}[A-HJ-NP-TV-Z]{2})$/,  # XYZ 12JK
+      /^([A-Z]{3})\s([0-9][A-HJ-NP-TV-Z][0-9]{2})$/,  # XYZ 1J34
+      /^([A-Z]{3})\s([0-9]{2}[A-HJ-NP-TV-Z][0-9])$/,  # XYZ 12J4
+      /^([A-Z]{3})\s([0-9][A-HJ-NP-TV-Z]{2}[0-9])$/,  # XYZ 1JK4
+      /^([A-Z]{3})\s([A-HJ-NP-TV-Z]{2}[0-9]{2})$/,  # XYZ JK34
+      /^([A-Z]{3})\s([0-9]{5})$/,                # XYZ 12345
+      /^([A-Z]{3})\s([0-9]{4}[A-HJ-NP-TV-Z])$/,  # XYZ 1234J
+      /^([A-Z]{3})\s([0-9]{3}[A-HJ-NP-TV-Z]{2})$/,  # XYZ 123JK
+      
+      # Motorcycle plates (2-letter powiat code)
+      /^([A-Z]{2})\s([0-9]{4})$/,                # XY 1234
+      /^([A-Z]{2})\s([0-9]{3}[A-HJ-NP-TV-Z])$/,  # XY 123J
+      /^([A-Z]{2})\s([0-9][A-HJ-NP-TV-Z][0-9]{2})$/,  # XY 1J34
+      /^([A-Z]{2})\s([0-9]{2}[A-HJ-NP-TV-Z][0-9])$/,  # XY 12J4
+      /^([A-Z]{2})\s([0-9]{2}[A-HJ-NP-TV-Z]{2})$/,  # XY 12JK
+      /^([A-Z]{2})\s([A-HJ-NP-TV-Z]{2}[0-9]{2})$/,  # XY JK12
+      
+      # Reduced size plates
+      /^([A-Z])\s([0-9]{3})$/,                   # X 123
+      /^([A-Z])\s([0-9]{2}[A-HJ-NP-TV-Z])$/,     # X 12J
+      /^([A-Z])\s([0-9][A-HJ-NP-TV-Z][0-9])$/,   # X 1J2
+      /^([A-Z])\s([A-HJ-NP-TV-Z][0-9]{2})$/,     # X J12
+      /^([A-Z])\s([0-9][A-HJ-NP-TV-Z]{2})$/,     # X 1JK
+      /^([A-Z])\s([A-HJ-NP-TV-Z]{2}[0-9])$/,     # X JK1
+      /^([A-Z])\s([A-HJ-NP-TV-Z][0-9][A-HJ-NP-TV-Z])$/,  # X J1K
+      
+      # Classic car plates
+      /^([A-Z]{2})\s([0-9]{2}[A-HJ-NP-TV-Z])$/,  # XY 12J
+      /^([A-Z]{2})\s([0-9]{3})$/,                # XY 123
+      /^([A-Z]{3})\s([0-9][A-HJ-NP-TV-Z])$/,     # XYZ 1J
+      /^([A-Z]{3})\s([0-9]{2})$/,                # XYZ 12
+      /^([A-Z]{3})\s([A-HJ-NP-TV-Z][0-9])$/,     # XYZ J1
+      
+      # Temporary and export plates
+      /^([A-Z][0-9])\s([0-9]{4})$/,              # X1 2345
+      /^([A-Z][0-9])\s([0-9]{3}[A-HJ-NP-TV-Z])$/,  # X1 234J
+      
+      # Testing vehicle plates
+      /^([A-Z][0-9])\s([0-9]{3})\sB$/,           # X1 234 B
+      
+      # Custom plates
+      # Letters must come before digits (they cannot be intermixed)
+      /^([A-Z][0-9])\s([A-Z][A-Z]{2,4})$/,       # X1 ABCDE (all letters)
+      /^([A-Z][0-9])\s([A-Z][A-Z]{1,3}[0-9]{1,2})$/,  # X1 ABC12 (letters followed by up to 2 digits)
+      
+      # Professional plates
+      /^([A-Z][0-9]{2})\s([0-9]{2}P[0-9]{2})$/   # X12 34P56
+    ],
+    
     # Netherlands
     nl: [
       /^([a-zA-Z]{2})-?([0-9]{2})-?([0-9]{2})$/,

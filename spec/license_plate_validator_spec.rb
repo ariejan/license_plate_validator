@@ -18,7 +18,7 @@ RSpec.describe LicensePlateValidator do
     subject { LicensePlateValidator.new("a") }
 
     it "returns array of symbols" do
-      expect(subject.supported_countries).to eql([:nl, :de])
+      expect(subject.supported_countries).to eql([:pl, :nl, :de])
     end
   end
 
@@ -136,6 +136,92 @@ RSpec.describe LicensePlateValidator do
       it "rejects '#{sample}'" do
         license = LicensePlateValidator.new(sample, country: :de)
         expect(license).to_not be_valid
+      end
+    end
+  end
+
+  context "PL - Poland" do
+    PL_VALID_SAMPLES = [
+      # Standard car plates
+      "WA 12345",  # Warsaw
+      "WA 1234J",  # Warsaw
+      "WA 123JK",  # Warsaw
+      "WA 1J345",  # Warsaw
+      "WA 1JK45",  # Warsaw
+      "GDA J234",  # Gdansk (3-letter code)
+      "GDA 12JK",  # Gdansk
+      "GDA 1J34",  # Gdansk
+      "GDA 12J4",  # Gdansk
+      "GDA 1JK4",  # Gdansk
+      "GDA JK34",  # Gdansk
+      "GDA 12345", # Gdansk
+      "GDA 1234J", # Gdansk
+      "GDA 123JK", # Gdansk
+      
+      # Motorcycle plates
+      "WA 1234",   # Warsaw
+      "WA 123J",   # Warsaw
+      "WA 1J34",   # Warsaw
+      "WA 12J4",   # Warsaw
+      "WA 12JK",   # Warsaw
+      "WA JK12",   # Warsaw
+      
+      # Reduced size plates
+      "W 123",     # Masovian
+      "W 12J",     # Masovian
+      "W 1J2",     # Masovian
+      "W J12",     # Masovian
+      "W 1JK",     # Masovian
+      "W JK1",     # Masovian
+      "W J1K",     # Masovian
+      
+      # Classic car plates
+      "WA 12J",    # Warsaw
+      "WA 123",    # Warsaw
+      "GDA 1J",    # Gdansk
+      "GDA 12",    # Gdansk
+      "GDA J1",    # Gdansk
+      
+      # Temporary and export plates
+      "W1 2345",   # Masovian
+      "W1 234J",   # Masovian
+      
+      # Testing vehicle plates
+      "W1 234 B",  # Masovian
+      
+      # Custom plates
+      "W1 ABCDE",  # Masovian
+      "W1 ABC12",  # Masovian
+      
+      # Professional plates
+      "W12 34P56"  # Masovian
+    ]
+
+    PL_INVALID_SAMPLES = [
+      # Invalid formats
+      "W 1234567",  # Too many digits
+      "W ABCDEF",   # No digit after voivodeship code
+      "WXYZ 123",   # Too many letters in area code
+      "W-123-ABC",  # Incorrect separator
+      "123 ABC",    # No voivodeship code
+      "W1234",      # No space
+      "W1 ABCDE1",  # Digit not at the end in custom plate
+      "W1 1ABCD",   # Digit at the beginning in custom plate
+      "W1 AB1CD",   # Intermixed digits and letters in custom plate
+      "W12 34X56"   # Professional plate with wrong letter (not P)
+    ]
+
+    PL_VALID_SAMPLES.each do |number|
+      it "accepts '#{number}'" do
+        license = LicensePlateValidator.new(number, country: :pl)
+        expect(license).to be_valid
+      end
+    end
+
+    PL_INVALID_SAMPLES.each do |number|
+      it "does not accept '#{number}'" do
+        license = LicensePlateValidator.new(number, country: :pl)
+        expect(license).not_to be_valid
       end
     end
   end
