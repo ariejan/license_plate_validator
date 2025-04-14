@@ -1,0 +1,4 @@
+pl:
+  errors:
+    messages:
+      invalid_license_plate: nie jest prawidłowym numerem rejestracyjnym
